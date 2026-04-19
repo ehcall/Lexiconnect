@@ -1,4 +1,5 @@
 import wn
+from networkx import has_path
 from wn.similarity import path
 from wn.similarity import lch
 from wn.similarity import wup
@@ -86,8 +87,8 @@ net.toggle_physics(True)
 net.show('testing.html')
 
 # TODO: do I have to keep passing my graph? idk someone else figure that out
-# TODO: figure out how to end the game (besides number of words)
-while len(gameGraph.nodes) < 10:
+# TODO: fix hardcode start and end nodes
+while not has_path(gameGraph, "chair","oil"):
     new_word = input("New connection word: ")
     gameGraph = addWord(gameGraph, new_word)
     net.from_nx(gameGraph)
