@@ -16,8 +16,8 @@ def setupGraph():
     G = nx.Graph()
 
     # TODO: use a different system beyond hard coding the starting nodes in
-    G.add_node("elephant", color="red")
-    G.add_node("leaf", color="blue")
+    G.add_node("chair", color="red")
+    G.add_node("oil", color="blue")
     return G
 
 oewn = wn.Wordnet("oewn")
@@ -81,7 +81,9 @@ def addWord(gameGraph, new_word):
 setupWordnet()
 gameGraph = setupGraph()
 net = Network(height = "500px", width = "600px", notebook = True)
-
+net.from_nx(gameGraph)
+net.toggle_physics(True)
+net.show('testing.html')
 
 # TODO: do I have to keep passing my graph? idk someone else figure that out
 # TODO: figure out how to end the game (besides number of words)
@@ -89,5 +91,8 @@ while len(gameGraph.nodes) < 10:
     new_word = input("New connection word: ")
     gameGraph = addWord(gameGraph, new_word)
     net.from_nx(gameGraph)
-    #net.toggle_physics(True)
+    net.toggle_physics(True)
     net.show('testing.html')
+
+
+# TODO: display sense/definition of words used for connections
